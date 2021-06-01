@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using Billify.Views;
 
 namespace Billify
 {
@@ -6,7 +8,15 @@ namespace Billify
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                Views.Main.MainMenu();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
