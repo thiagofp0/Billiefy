@@ -15,22 +15,21 @@ namespace Billify.Controllers
         {
             return _albumDao.Albums;
         }
-        public int Store(Album album, string artist)
+        public void Store(Album album, Artist artist)
         {
             try
             {
-                if (_artistController.VerifyArtist(artist) != 0)
+                if (_artistController.VerifyArtist(artist.Name) != 0)
                 {
-                    album.ArtistId = _artistController.VerifyArtist(artist);
+                    album.ArtistId = _artistController.VerifyArtist(artist.Name);
                 }
                 else
                 {
                     _artistController.Store(artist);
-                    album.ArtistId = _artistController.VerifyArtist(artist);
+                    album.ArtistId = _artistController.VerifyArtist(artist.Name);
                 }
 
-                int id = _albumDao.Create(album);
-                return id;
+                _albumDao.Create(album);
             }
             catch (Exception e)
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Billify.Models;
 
 namespace Billify.Dao
@@ -18,6 +19,7 @@ namespace Billify.Dao
         {
             try
             {
+                artist.Id = (_artists.Count) + 1;
                 _artists.Add(artist);
             }
             catch (Exception e)
@@ -29,15 +31,15 @@ namespace Billify.Dao
 
         public Artist GetById(int artistId)
         {
-            try
+            foreach (var value in _artists)
             {
-                return _artists[artistId];
+                if (artistId == value.Id)
+                {
+                    return value;
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            return null;
+           
         }
     }
 }

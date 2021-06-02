@@ -13,13 +13,12 @@ namespace Billify.Dao
             get => _albums;
             set => _albums = value;
         }
-        public int Create(Album album)
+        public void Create(Album album)
         {
             try
             {
                 album.Id = (_albums.Count) + 1;
                 _albums.Add(album);
-                return album.Id;
             }
             catch (Exception e)
             {

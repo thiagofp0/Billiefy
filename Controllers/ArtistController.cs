@@ -22,15 +22,10 @@ namespace Billify.Controllers
             }
         }
 
-        public void Store(string artistName)
+        public void Store(Artist artist)
         {
             try
             {
-                Artist artist = new Artist();
-                artist.Id = (_artistDao.Artists.Count) + 1;
-                artist.Name = artistName;
-
-            
                 _artistDao.Create(artist);
             }
             catch (Exception e)
@@ -63,5 +58,6 @@ namespace Billify.Controllers
             }
             return 0;
         }
+        
     }
 }

@@ -13,11 +13,12 @@ namespace Billify.Views
         private ViewSong _viewSong = new ViewSong();
         private Album _album = new Album();
         private List<Album> _albums = new List<Album>();
-        private Song _song = new Song();
+        private Artist _artist = new Artist();
+
         public void Create()
         {
             //Aqui o usuário interage com o programa e informa os dados a serem salvos no objeto.
-            int aux = 0;
+            int aux;
 
             Console.WriteLine("Qual é o título do álbum?");
             _album.Title = Console.ReadLine();
@@ -26,12 +27,13 @@ namespace Billify.Views
             _album.ReleaseYear = int.Parse(Console.ReadLine()!);
 
             Console.WriteLine("Qual o nome da banda?");
-            string artist = Console.ReadLine();
+            _artist.Name = Console.ReadLine();
             
             //Pesquisa artista na lista 
             //Se existir, pega o ID, senão cria e pega o ID.
             
-            _album.Id  = _albumController.Store(_album, artist);
+            _albumController.Store(_album, _artist);
+            _album = _albumController.GetByTitle(_album.Title);
             
             Console.WriteLine("\n");
             Console.WriteLine("Adicionando as músicas do álbum.");
@@ -53,7 +55,7 @@ namespace Billify.Views
 
         public void Search()
         {
-            int option = 0;
+            int option;
             try
             {
                 Console.WriteLine("Procurar álbum por:");
@@ -70,16 +72,19 @@ namespace Billify.Views
                         Console.WriteLine("Qual é o título do álbum?");
                         _album.Title = Console.ReadLine();
                         _album = _albumController.GetByTitle(_album.Title);
+                        Show(_album);
                         break;
                     case 2:
                         Console.WriteLine("Qual o ano de lançamento?");
                         _album.ReleaseYear = int.Parse(Console.ReadLine()!);
                         _albums = _albumController.GetByReleaseYear(_album.ReleaseYear);
+                        ShowResults(_albums);
                         break;
                     case 3:
                         Console.WriteLine("Qual o nome da banda?");
                         _album.ArtistId = _artistController.VerifyArtist(Console.ReadLine());
                         _albums = _albumController.GetByArtist(_album.ArtistId);
+                        ShowResults(_albums);
                         break;
                     default:
                         Console.WriteLine("Oops! Opção Inválida!");
@@ -98,11 +103,11 @@ namespace Billify.Views
             try
             {
                 Console.WriteLine("Aqui está o seu Álbum!");
-                Console.WriteLine("Nome do álbum: " + _album.Title);
-                Console.WriteLine("Ano de lançamento: " + _album.ReleaseYear);
-                Console.WriteLine("Banda: " + _artistController.GetById(_album.ArtistId));
+                Console.WriteLine("Nome do álbum: " + album.Title);
+                Console.WriteLine("Ano de lançamento: " + album.ReleaseYear);
+                Console.WriteLine("Banda: " + _artistController.GetById(album.ArtistId).Name);
 
-                foreach (var value in _songController.GetByAlbumId(_album.ArtistId))
+                foreach (var value in _songController.GetByAlbumId(album.Id))
                 {
                     _viewSong.Show(value);
                 }
