@@ -1,24 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Billify.Models;
+using Billiefy.Models;
 
-namespace Billify.Dao
+namespace Billiefy.Dao
 {
     public class AlbumDao
     {
         private List<Album> _albums = new List<Album>();
-        
+
         public List<Album> Albums
         {
             get => _albums;
             set => _albums = value;
         }
-        public void Create(Album album)
+
+        public Album Create(Album album)
         {
             try
             {
                 album.Id = (_albums.Count) + 1;
                 _albums.Add(album);
+                return _albums[_albums.Count - 1];
             }
             catch (Exception e)
             {
@@ -27,61 +29,68 @@ namespace Billify.Dao
             }
         }
 
-        public Album GetByTitle(string album)
+        public Album GetByTitle(string title)
         {
-            foreach (var value in _albums)
+            try
             {
-                if (album.Equals(value.Title))
+                foreach (var value in _albums)
                 {
-                    return value;
+                    if (value.Title.Equals(title))
+                    {
+                        return value;
+                    }
                 }
-            }
 
-            return null;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public List<Album> GetByReleaseYear(int year)
+        public List<Album> GetByRealeseYear(int year)
         {
             List<Album> results = new List<Album>();
             try
             {
                 foreach (var value in _albums)
                 {
-                    if (year == value.ReleaseYear)
+                    if (value.ReleaseYear == year)
                     {
                         results.Add(value);
                     }
                 }
+
+                return results;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
-            return results;
         }
 
-        public List<Album> GetByArtist(int artistId)
+        public List<Album> GetByArtist(string artist)
         {
             List<Album> results = new List<Album>();
             try
             {
                 foreach (var value in _albums)
                 {
-                    if (artistId == value.Id)
+                    if (value.Artist.Equals(artist))
                     {
                         results.Add(value);
                     }
                 }
+                return results;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
-            return results;
         }
     }
 }

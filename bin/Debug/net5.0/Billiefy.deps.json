@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "Billify/1.0.0": {
+      "Billiefy/1.0.0": {
         "runtime": {
-          "Billify.dll": {}
+          "Billiefy.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Billify/1.0.0": {
+    "Billiefy/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

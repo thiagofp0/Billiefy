@@ -1,47 +1,35 @@
-﻿using System.Collections.Generic;
-
-namespace Billify.Models
+namespace Billiefy.Models
 {
     public class Album
     {
         private int _id;
         private string _title;
-        private int _artistId;
-        
-
+        private string _artist;
         private int _releaseYear;
-
-        public Album(){}
-        public Album(string title, int artist, int releaseYear)
-        {
-            _title = title;
-            _artistId = artist;
-            _releaseYear = releaseYear;
-        }
         
+
         public int Id
         {
             get => _id;
             set => _id = value;
         }
-        
+
         public string Title
         {
             get => _title;
             set => _title = value;
         }
 
-        public int ArtistId
+        public string Artist
         {
-            get => _artistId;
-            set => _artistId = value;
+            get => _artist;
+            set => _artist = value;
         }
-
         public int ReleaseYear
         {
             get => _releaseYear;
             set => _releaseYear = value;
         }
-        
+
     }
 }

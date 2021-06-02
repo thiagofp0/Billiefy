@@ -1,31 +1,23 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Billify.Dao;
-using Billify.Models;
+using Billiefy.Dao;
+using Billiefy.Models;
 
-namespace Billify.Controllers
+namespace Billiefy.Controllers
 {
     public class SongController
     {
         private SongDao _songDao = new SongDao();
+
+        public List<Song> Index()
+        {
+            return SongDao._songs;
+        }
         public void Store(Song song)
         {
             try
             {
                 _songDao.Create(song);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
-        public Song GetByTitle(string song)
-        {
-            try
-            {
-                return _songDao.GetByTitle(song);
             }
             catch (Exception e)
             {

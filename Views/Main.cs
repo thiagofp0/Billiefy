@@ -1,11 +1,11 @@
-﻿using System;
-using Billify.Views;
+using System;
 
-namespace Billify.Views
+namespace Billiefy.Views
 {
     public class Main
     {
         private ViewAlbum _viewAlbum = new ViewAlbum();
+
         public void MainMenu()
         {
             int option = 0; //Opção selecionada no menu.
@@ -27,7 +27,7 @@ namespace Billify.Views
                 SwitchOption(option);
             }
         }
-
+        
         public void SwitchOption(int option)
         {
             try

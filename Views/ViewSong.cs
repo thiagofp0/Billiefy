@@ -1,51 +1,38 @@
 using System;
-using Billify.Controllers;
-using Billify.Models;
+using Billiefy.Controllers;
+using Billiefy.Models;
 
-namespace Billify.Views
+namespace Billiefy.Views
 {
     public class ViewSong
     {
-        private Song _song = new Song();
         private SongController _songController = new SongController();
-        
-        public void Create()
+        public void Create(int albumId)
         {
-            int aux = 0;
+            Song song = new Song();
+            int aux;
+            
             Console.WriteLine("Qual o nome da música?");
-            _song.Title = Console.ReadLine();
+            song.Title = Console.ReadLine();
                 
             Console.WriteLine("Qual a duração da música?");
-            _song.Duration = float.Parse(Console.ReadLine()!);
-                
-                
+            song.Duration = float.Parse(Console.ReadLine()!);
+            
             Console.WriteLine(
                 "Essa música é favorita? \n" +
                 "1. Sim \n" +
                 "2. Não"
             );
             aux = int.Parse(Console.ReadLine()!);
-
-            if (aux == 1)
-            {
-                _song.IsFavorite = true;
-            }
-            _song.IsFavorite = false;
-                
-            //_album.Songs.Add(_song); Substituir por criar a música passando id do álbum
-            _songController.Store(_song);
+            song.IsFavorite = aux == 1; // Operador ternário
+            song.AlbumId = albumId;
+            _songController.Store(song);
         }
+
         public void Show(Song song)
         {
-            Console.Write(song.Title + " --------------- " + song.Duration + "  ");
-            if (song.IsFavorite)
-            {
-                Console.Write("❤");
-            }
-            else
-            {
-                Console.Write("🤍");
-            }
+            Console.Write(song.Title + " --------------- " + song.Duration + " minutos  ");
+            Console.WriteLine(song.IsFavorite ? "Favorita" : "Não-Favorita");
         }
     }
 }

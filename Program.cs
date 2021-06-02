@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using Billify.Views;
+using Billiefy.Views;
 
-namespace Billify
+namespace Billiefy
 {
     class Program
     {

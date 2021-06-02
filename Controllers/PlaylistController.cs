@@ -1,4 +1,4 @@
-﻿namespace Billify.Controllers
+namespace Billiefy.Controllers
 {
     public class PlaylistController
     {

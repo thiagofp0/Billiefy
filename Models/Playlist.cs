@@ -1,4 +1,4 @@
-﻿namespace Billify.Models
+namespace Billiefy.Models
 {
     public class Playlist
     {

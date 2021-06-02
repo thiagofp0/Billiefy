@@ -1,39 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Billify.Models;
+using Billiefy.Models;
 
-namespace Billify.Dao
+namespace Billiefy.Dao
 {
     public class SongDao
     {
-        private List<Song> _songs = new List<Song>();
+        public static List<Song> _songs = new List<Song>();
         public void Create(Song song)
         {
             try
             {
                 _songs.Add(song);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
-        public Song GetByTitle(string song)
-        {
-            try
-            {
-                foreach (var value in _songs)
-                {
-                    if (song.Equals(value.Title))
-                    {
-                        return value;
-                    }
-                }
-
-                return null;
             }
             catch (Exception e)
             {
@@ -49,7 +27,7 @@ namespace Billify.Dao
             {
                 foreach (var value in _songs)
                 {
-                    if (albumId == value.AlbumId)
+                    if (value.AlbumId == albumId)
                     {
                         results.Add(value);
                     }

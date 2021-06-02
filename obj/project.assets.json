@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thiag\\Desktop\\Billify\\Billify.csproj",
-      "projectName": "Billify",
-      "projectPath": "C:\\Users\\thiag\\Desktop\\Billify\\Billify.csproj",
+      "projectUniqueName": "C:\\Users\\thiag\\Desktop\\Billiefy\\Billiefy.csproj",
+      "projectName": "Billiefy",
+      "projectPath": "C:\\Users\\thiag\\Desktop\\Billiefy\\Billiefy.csproj",
       "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thiag\\Desktop\\Billify\\obj\\",
+      "outputPath": "C:\\Users\\thiag\\Desktop\\Billiefy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,0 +1,16 @@
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.exe
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.deps.json
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.runtimeconfig.json
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.runtimeconfig.dev.json
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.dll
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\ref\Billiefy.dll
+C:\Users\thiag\Desktop\Billiefy\bin\Debug\net5.0\Billiefy.pdb
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.csprojAssemblyReference.cache
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.AssemblyInfoInputs.cache
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.AssemblyInfo.cs
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.csproj.CoreCompileInputs.cache
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.dll
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\ref\Billiefy.dll
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.pdb
+C:\Users\thiag\Desktop\Billiefy\obj\Debug\net5.0\Billiefy.genruntimeconfig.cache

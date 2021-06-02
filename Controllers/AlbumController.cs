@@ -1,35 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Billify.Dao;
-using Billify.Models;
+using Billiefy.Dao;
+using Billiefy.Models;
 
-namespace Billify.Controllers
+namespace Billiefy.Controllers
 {
     public class AlbumController
     {
         private AlbumDao _albumDao = new AlbumDao();
-        private ArtistController _artistController = new ArtistController();
-        private Album _album = new Album();
 
-        public List<Album> Index()
-        {
-            return _albumDao.Albums;
-        }
-        public void Store(Album album, Artist artist)
+        public Album Store(Album album)
         {
             try
             {
-                if (_artistController.VerifyArtist(artist.Name) != 0)
-                {
-                    album.ArtistId = _artistController.VerifyArtist(artist.Name);
-                }
-                else
-                {
-                    _artistController.Store(artist);
-                    album.ArtistId = _artistController.VerifyArtist(artist.Name);
-                }
-
-                _albumDao.Create(album);
+                return _albumDao.Create(album);
             }
             catch (Exception e)
             {
@@ -38,11 +22,11 @@ namespace Billify.Controllers
             }
         }
 
-        public Album GetByTitle(string album)
+        public Album GetByTitle(string title)
         {
             try
             {
-                return _albumDao.GetByTitle(album);
+                return _albumDao.GetByTitle(title);
             }
             catch (Exception e)
             {
@@ -55,7 +39,7 @@ namespace Billify.Controllers
         {
             try
             {
-                return _albumDao.GetByReleaseYear(year);
+                return _albumDao.GetByRealeseYear(year);
             }
             catch (Exception e)
             {
@@ -64,11 +48,11 @@ namespace Billify.Controllers
             }
         }
 
-        public List<Album> GetByArtist(int artistId)
+        public List<Album> GetByArtist(string artist)
         {
             try
             {
-                return _albumDao.GetByArtist(artistId);
+                return _albumDao.GetByArtist(artist);
             }
             catch (Exception e)
             {
