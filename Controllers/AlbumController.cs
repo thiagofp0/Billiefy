@@ -1,24 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using Billify.Dao;
 using Billify.Models;
 
 namespace Billify.Controllers
 {
-    public static class AlbumController
+    public class AlbumController
     {
-        /*public static Create(string title, int releaseYear, Artist artist)
+        private AlbumDao _albumDao = new AlbumDao();
+
+        public List<Album> Index()
+        {
+            return _albumDao.Albums;
+        }
+        public void Store(Album album)
         {
             try
             {
-                if (title != "" && releaseYear != null && artist != null)
-                {
-                    Album album = new Album(title, artist, releaseYear);
-                }
+                album.Id = (_albumDao.Albums.Count) + 1;
+                _albumDao.Create(album);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-        }*/
+        }
     }
 }

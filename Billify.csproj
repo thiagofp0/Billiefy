@@ -5,19 +5,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Controllers\SongController\**" />
-    <Compile Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Controllers\SongController\**" />
-    <EmbeddedResource Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Controllers\SongController\**" />
-    <None Remove="Models\**" />
-  </ItemGroup>
-
 </Project>

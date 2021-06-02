@@ -4,6 +4,7 @@ namespace Billify.Models
 {
     public class Song
     {
+        private int _id;
         private string _title;
         private float _duration;
         private Boolean _isFavorite;
@@ -14,6 +15,12 @@ namespace Billify.Models
             this._title = title;
             this._duration = duration;
             this._isFavorite = isFavorite;
+        }
+        
+        public int Id
+        {
+            get => _id;
+            set => _id = value;
         }
         public string Title
         {

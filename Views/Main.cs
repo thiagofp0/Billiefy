@@ -5,10 +5,10 @@ namespace Billify.Views
 {
     public class Main
     {
-        public static void MainMenu()
+        private ViewAlbum _viewAlbum = new ViewAlbum();
+        public void MainMenu()
         {
-            int option; //Opção selecionada no menu.
-            
+            int option = 0; //Opção selecionada no menu.
             Console.WriteLine("------------------ Billiefy --------------------");
             Console.WriteLine("Escolha uma opção:");
             Console.WriteLine(
@@ -21,17 +21,25 @@ namespace Billify.Views
                 
             );
 
-            option = Console.Read();
+            option = int.Parse(Console.ReadLine());
             SwitchOption(option);
         }
 
-        public static void SwitchOption(int option)
+        public void SwitchOption(int option)
         {
             try
             {
                 switch (option)
                 {
-                    //Todo                        
+                    case 1:
+                        _viewAlbum.Create();
+                        break;
+                    case 2:
+                        _viewAlbum.Search();
+                        break;
+                    default:
+                        Console.WriteLine("Oops! Opção inválida!");
+                        break;
                 }
             }
             catch (Exception e)

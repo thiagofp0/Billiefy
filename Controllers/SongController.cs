@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Billify.Models;
 
 namespace Billify.Controllers
 {
     public class SongController
     {
-        public static void AddSong()
+        public void Store(Song song, int albumId)
         {
             try
             {

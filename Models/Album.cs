@@ -1,16 +1,28 @@
-﻿namespace Billify.Models
+﻿using System.Collections.Generic;
+
+namespace Billify.Models
 {
     public class Album
     {
+        private int _id;
         private string _title;
-        private Artist _artist;
+        private int _artistId;
+        
+
         private int _releaseYear;
 
-        public Album(string title, Artist artist, int releaseYear)
+        public Album(){}
+        public Album(string title, int artist, int releaseYear)
         {
             _title = title;
-            _artist = artist;
+            _artistId = artist;
             _releaseYear = releaseYear;
+        }
+        
+        public int Id
+        {
+            get => _id;
+            set => _id = value;
         }
         
         public string Title
@@ -19,10 +31,10 @@
             set => _title = value;
         }
 
-        public Artist Artist
+        public int ArtistId
         {
-            get => _artist;
-            set => _artist = value;
+            get => _artistId;
+            set => _artistId = value;
         }
 
         public int ReleaseYear
@@ -30,5 +42,6 @@
             get => _releaseYear;
             set => _releaseYear = value;
         }
+        
     }
 }

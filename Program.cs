@@ -8,9 +8,10 @@ namespace Billify
     {
         static void Main(string[] args)
         {
+            Main app = new Main();
             try
             {
-                Views.Main.MainMenu();
+                app.MainMenu();
             }
             catch (Exception e)
             {
