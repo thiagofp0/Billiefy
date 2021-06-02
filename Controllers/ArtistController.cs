@@ -27,9 +27,9 @@ namespace Billify.Controllers
             try
             {
                 Artist artist = new Artist();
-            
                 artist.Id = (_artistDao.Artists.Count) + 1;
                 artist.Name = artistName;
+
             
                 _artistDao.Create(artist);
             }

@@ -6,7 +6,7 @@ namespace Billify.Dao
 {
     public class AlbumDao
     {
-        private List<Album> _albums;
+        private List<Album> _albums = new List<Album>();
         
         public List<Album> Albums
         {
@@ -17,7 +17,7 @@ namespace Billify.Dao
         {
             try
             {
-                album.Id = _albums.Count + 1;
+                album.Id = (_albums.Count) + 1;
                 _albums.Add(album);
                 return album.Id;
             }

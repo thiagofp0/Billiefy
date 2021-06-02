@@ -19,17 +19,16 @@ namespace Billify.Controllers
         {
             try
             {
-                
                 if (_artistController.VerifyArtist(artist) != 0)
                 {
-                    _album.ArtistId = _artistController.VerifyArtist(artist);
+                    album.ArtistId = _artistController.VerifyArtist(artist);
                 }
                 else
                 {
                     _artistController.Store(artist);
-                    _album.ArtistId = _artistController.VerifyArtist(artist);
+                    album.ArtistId = _artistController.VerifyArtist(artist);
                 }
-                
+
                 int id = _albumDao.Create(album);
                 return id;
             }

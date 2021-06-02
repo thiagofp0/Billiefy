@@ -30,7 +30,7 @@ namespace Billify.Views
             
             //Pesquisa artista na lista 
             //Se existir, pega o ID, senão cria e pega o ID.
-
+            
             _album.Id  = _albumController.Store(_album, artist);
             
             Console.WriteLine("\n");
