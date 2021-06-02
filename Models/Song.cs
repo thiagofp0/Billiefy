@@ -8,13 +8,16 @@ namespace Billify.Models
         private string _title;
         private float _duration;
         private Boolean _isFavorite;
-        
+        private int _albumId;
+
+
         public Song(){}
-        public Song(string title, float duration, DateTime releaseDate, bool isFavorite, Artist bandName)
+        public Song(string title, float duration, DateTime releaseDate, bool isFavorite, Artist bandName, int albumId)
         {
             this._title = title;
             this._duration = duration;
             this._isFavorite = isFavorite;
+            this._albumId = albumId;
         }
         
         public int Id
@@ -38,6 +41,12 @@ namespace Billify.Models
         {
             get => _isFavorite;
             set => _isFavorite = value;
+        }
+        
+        public int AlbumId
+        {
+            get => _albumId;
+            set => _albumId = value;
         }
         
     }

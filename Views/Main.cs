@@ -21,7 +21,7 @@ namespace Billify.Views
                 
             );
 
-            option = int.Parse(Console.ReadLine());
+            option = int.Parse(Console.ReadLine()!);
             SwitchOption(option);
         }
 

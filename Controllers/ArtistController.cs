@@ -39,6 +39,19 @@ namespace Billify.Controllers
                 throw;
             }
         }
+
+        public Artist GetById(int artistId)
+        {
+            try
+            {
+                return _artistDao.GetById(artistId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         public int VerifyArtist(string artist)
         {
             foreach (var value in _artistDao.Artists)

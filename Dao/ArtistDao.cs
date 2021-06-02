@@ -26,5 +26,18 @@ namespace Billify.Dao
                 throw;
             }
         }
+
+        public Artist GetById(int artistId)
+        {
+            try
+            {
+                return _artists[artistId];
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

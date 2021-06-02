@@ -10,13 +10,15 @@ namespace Billify.Views
         private AlbumController _albumController = new AlbumController();
         private SongController _songController = new SongController();
         private ArtistController _artistController = new ArtistController();
+        private ViewSong _viewSong = new ViewSong();
         private Album _album = new Album();
+        private List<Album> _albums = new List<Album>();
         private Song _song = new Song();
         public void Create()
         {
             //Aqui o usuário interage com o programa e informa os dados a serem salvos no objeto.
             int aux = 0;
-            
+
             Console.WriteLine("Qual é o título do álbum?");
             _album.Title = Console.ReadLine();
             
@@ -29,15 +31,7 @@ namespace Billify.Views
             //Pesquisa artista na lista 
             //Se existir, pega o ID, senão cria e pega o ID.
 
-            if (_artistController.VerifyArtist(artist) != 0)
-            {
-                _album.ArtistId = _artistController.VerifyArtist(artist);
-            }
-            else
-            {
-                _artistController.Store(artist);
-                _album.ArtistId = _artistController.VerifyArtist(artist);
-            }
+            _album.Id  = _albumController.Store(_album, artist);
             
             Console.WriteLine("\n");
             Console.WriteLine("Adicionando as músicas do álbum.");
@@ -45,28 +39,7 @@ namespace Billify.Views
             do
             {
                 
-                Console.WriteLine("Qual o nome da música?");
-                _song.Title = Console.ReadLine();
-                
-                Console.WriteLine("Qual a duração da música?");
-                _song.Duration = float.Parse(Console.ReadLine()!);
-                
-                
-                Console.WriteLine(
-                    "Essa música é favorita? \n" +
-                    "1. Sim \n" +
-                    "2. Não"
-                );
-                aux = int.Parse(Console.ReadLine()!);
-
-                if (aux == 1)
-                {
-                    _song.IsFavorite = true;
-                }
-                _song.IsFavorite = false;
-                
-                //_album.Songs.Add(_song); Substituir por criar a música passando id do álbum
-                _songController.Store(_song, _album.Id);
+                _viewSong.Create();
                 
                 Console.WriteLine(
                     "Pronto! Música adicionada! Adicionar outra? \n" +
@@ -76,7 +49,6 @@ namespace Billify.Views
                 aux = int.Parse(Console.ReadLine()!);
 
             } while (aux != 2);
-            _albumController.Store(_album);
         }
 
         public void Search()
@@ -91,6 +63,64 @@ namespace Billify.Views
                     "3. Banda \n"
                 );
                 option = int.Parse(Console.ReadLine()!);
+
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Qual é o título do álbum?");
+                        _album.Title = Console.ReadLine();
+                        _album = _albumController.GetByTitle(_album.Title);
+                        break;
+                    case 2:
+                        Console.WriteLine("Qual o ano de lançamento?");
+                        _album.ReleaseYear = int.Parse(Console.ReadLine()!);
+                        _albums = _albumController.GetByReleaseYear(_album.ReleaseYear);
+                        break;
+                    case 3:
+                        Console.WriteLine("Qual o nome da banda?");
+                        _album.ArtistId = _artistController.VerifyArtist(Console.ReadLine());
+                        _albums = _albumController.GetByArtist(_album.ArtistId);
+                        break;
+                    default:
+                        Console.WriteLine("Oops! Opção Inválida!");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public void Show(Album album)
+        {
+            try
+            {
+                Console.WriteLine("Aqui está o seu Álbum!");
+                Console.WriteLine("Nome do álbum: " + _album.Title);
+                Console.WriteLine("Ano de lançamento: " + _album.ReleaseYear);
+                Console.WriteLine("Banda: " + _artistController.GetById(_album.ArtistId));
+
+                foreach (var value in _songController.GetByAlbumId(_album.ArtistId))
+                {
+                    _viewSong.Show(value);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public void ShowResults(List<Album> albums)
+        {
+            try
+            {
+                foreach (var value in albums)
+                {
+                    Show(value);
+                }
             }
             catch (Exception e)
             {
