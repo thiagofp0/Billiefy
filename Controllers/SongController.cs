@@ -38,5 +38,31 @@ namespace Billiefy.Controllers
                 throw;
             }
         }
+
+        public List<Song> GetByTitle(string title)
+        {
+            try
+            {
+                return _songDao.GetByTitle(title);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public List<Song> GetByArtist(string artist)
+        {
+            try
+            {
+                return _songDao.GetByArtist(artist);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

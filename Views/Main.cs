@@ -5,9 +5,12 @@ namespace Billiefy.Views
     public class Main
     {
         private ViewAlbum _viewAlbum = new ViewAlbum();
+        private ViewSong _viewSong = new ViewSong();
+        private ViewPlaylist _viewPlaylist = new ViewPlaylist();
 
         public void MainMenu()
         {
+            //_viewAlbum.Test();
             int option = 0; //Opção selecionada no menu.
             while (option != 5)
             {
@@ -39,6 +42,12 @@ namespace Billiefy.Views
                         break;
                     case 2:
                         _viewAlbum.Search();
+                        break;
+                    case 3:
+                        _viewSong.Search();
+                        break;
+                    case 4:
+                        _viewPlaylist.Create();
                         break;
                     case 5:
                         Console.WriteLine("Tchau, Billie!");

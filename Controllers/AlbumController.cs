@@ -21,6 +21,7 @@ namespace Billiefy.Controllers
                 throw;
             }
         }
+        
 
         public Album GetByTitle(string title)
         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Billiefy.Controllers;
 using Billiefy.Models;
+using Billiefy.Tests;
 
 namespace Billiefy.Views
 {
@@ -10,6 +11,20 @@ namespace Billiefy.Views
         private AlbumController _albumController = new AlbumController();
         private SongController _songController = new SongController();
         private ViewSong _viewSong = new ViewSong();
+
+        public void Test()
+        {
+            try
+            {
+                Generate generate = new Generate();
+                generate.GenerateAlbum(ref _albumController, ref _songController);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         public void Create()
         {
@@ -82,7 +97,7 @@ namespace Billiefy.Views
             }
         }
 
-        public void Show(Album album)
+        private void Show(Album album)
         {
             List<Song> songs = new List<Song>();
             
@@ -103,7 +118,7 @@ namespace Billiefy.Views
             Console.WriteLine("\n");
         }
 
-        public void ShowResults(List<Album> albums)
+        private void ShowResults(List<Album> albums)
         {
             foreach (var value in albums)
             {

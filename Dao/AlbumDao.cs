@@ -28,6 +28,7 @@ namespace Billiefy.Dao
                 throw;
             }
         }
+        
 
         public Album GetByTitle(string title)
         {
@@ -55,6 +56,7 @@ namespace Billiefy.Dao
             List<Album> results = new List<Album>();
             try
             {
+                Console.WriteLine(_albums.Count);
                 foreach (var value in _albums)
                 {
                     if (value.ReleaseYear == year)
@@ -62,7 +64,7 @@ namespace Billiefy.Dao
                         results.Add(value);
                     }
                 }
-
+                
                 return results;
             }
             catch (Exception e)

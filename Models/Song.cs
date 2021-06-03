@@ -4,7 +4,7 @@ namespace Billiefy.Models
     {
         private int _id;
         private string _title;
-        private float _duration;
+        private double _duration;
         private bool _isFavorite;
         private int _albumId;
 
@@ -20,7 +20,7 @@ namespace Billiefy.Models
             set => _title = value;
         }
 
-        public float Duration
+        public double Duration
         {
             get => _duration;
             set => _duration = value;
