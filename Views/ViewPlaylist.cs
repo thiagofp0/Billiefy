@@ -23,6 +23,7 @@ namespace Billiefy.Views
                 {
                     _viewSong.Show(song);
                 }
+                Console.WriteLine("Tempo de duração --------------- " + Math.Round(_playlistController.SumDurations(playlist), 2) + " minutos");
             }
                 
             

@@ -15,14 +15,40 @@ namespace Billiefy.Controllers
             int aux = 0;
             try
             {
-                songs = this.SeparateSongs();
-
+                songs = this.SeparateSongs(); //songs[0] - nao favoritas | songs[1] - favoritas 
+    
                 int minor = Math.Min(songs[0].Count, songs[1].Count);
+                
                 while (aux < minor && SumDurations(playlist)+songs[0][aux].Duration+songs[1][aux].Duration <= 60)
                 {
                     playlist.Add(songs[0][aux]);
                     playlist.Add(songs[1][aux]);
                     aux++;
+                }
+
+                if (SumDurations(playlist) == 0)
+                {
+                    if (songs[0].Count > 0 && songs[1].Count > 0)
+                    {
+                        playlist.Add(songs[1][0]);
+                    }else if (songs[0].Count > 0)
+                    {
+                        aux = 0;
+                        while (aux < songs[0].Count && SumDurations(playlist)+songs[0][aux].Duration<= 60)
+                        {
+                            playlist.Add(songs[0][aux]);
+                            aux++;
+                        }
+                    } else if (songs[1].Count > 0)
+                    {
+                        aux = 0;
+                        while (aux < songs[1].Count && SumDurations(playlist)+songs[1][aux].Duration<= 60)
+                        {
+                            playlist.Add(songs[1][aux]);
+                            aux++;
+                        }
+                    }
+                    
                 }
 
                 return playlist;
