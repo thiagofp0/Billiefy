@@ -12,11 +12,19 @@ namespace Billiefy.Views
         public void Create()
         {
             List<Song> playlist = _playlistController.Create();
-            Console.WriteLine("Aqui está a sua playlist:");
-            foreach (var song in playlist)
+            if (playlist.Count == 0)
             {
-                _viewSong.Show(song);
+                Console.WriteLine("Não existem músicas cadastradas..."); 
             }
+            else
+            {
+                Console.WriteLine("Aqui está a sua playlist:");
+                foreach (var song in playlist)
+                {
+                    _viewSong.Show(song);
+                }
+            }
+                
             
         }
     }

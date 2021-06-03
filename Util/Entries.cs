@@ -26,10 +26,10 @@ namespace Billiefy.Util
         public static int GetYear(string msg)
         {
             int year = 2022;
-            while (year > 2021)
+            while (year > 2021 || year <= 0)
             {
                 year = GetInt(msg);
-                if (year > 2021)
+                if (year > 2021 || year <= 0)
                 {
                     Console.WriteLine("O ano digitado é inválido... ");
                 }
@@ -59,14 +59,14 @@ namespace Billiefy.Util
             bool isParsable = false;
             double number = 0;
             string entry = "";
-            while (!isParsable || number < 0)
+            while (!isParsable || number <= 0)
             {
                 Console.WriteLine(msg);
                 entry = Console.ReadLine();
                 entry.Replace(".", ",");
                 
                 isParsable = Double.TryParse(entry, out number);
-                if (!isParsable || number < 0)
+                if (!isParsable || number <= 0)
                 {
                     Console.WriteLine("Valor digitado é inválido! Digite um número positivo: ");
                 }

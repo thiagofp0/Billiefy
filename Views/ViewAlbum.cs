@@ -29,7 +29,7 @@ namespace Billiefy.Views
         public void Create()
         {
             Album album = new Album();
-            int aux;
+            int aux=0;
 
             album.Title = Entries.GetString("Qual é o título do álbum?");
             album.ReleaseYear = Entries.GetYear("Qual o ano de lançamento deste álbum?");
@@ -38,14 +38,17 @@ namespace Billiefy.Views
             
             Console.WriteLine("\n");
             Console.WriteLine("Adicionando as músicas do álbum.");
-
+            
             do
             {
                 _viewSong.Create(album.Id);
-                aux = Entries.GetInt("Pronto! Música adicionada! Adicionar outra? \n" +
-                                     "1. Sim \n" +
-                                     "2. Não \n");
-            } while (aux != 2);
+                aux = Entries.GetInt("Pronto! Música adicionada! Adicionar outra? \n1. Sim \n2. Não \n");
+                while (aux != 1 && aux != 2)
+                {
+                    Console.WriteLine("Valor digitado é inválido! Digite uma opção válida: ");
+                    aux = Entries.GetInt("Adicionar outra música? \n1. Sim \n2. Não \n");
+                }
+            } while (aux == 1);
         }
         
         public void Search()
@@ -84,7 +87,6 @@ namespace Billiefy.Views
             
             //Mostra as informações do álbum
             Console.WriteLine("");
-            Console.WriteLine("Aqui está o seu Álbum! ");
             Console.WriteLine("Nome do álbum: " + album.Title);
             Console.WriteLine("Ano de lançamento: " + album.ReleaseYear);
             Console.WriteLine("Banda: " + album.Artist);
@@ -101,11 +103,18 @@ namespace Billiefy.Views
 
         private void ShowResults(List<Album> albums)
         {
-            Console.WriteLine("");
-            Console.WriteLine("Álbuns encontrados: ");
-            foreach (var value in albums)
+            if (albums.Count == 0)
             {
-                Show(value);
+                Console.WriteLine("Nenhum álbum foi encontrado... "); 
+            }
+            else
+            {
+                Console.WriteLine("Álbuns encontrados: ");
+                foreach (var value in albums)
+                {
+                    Show(value);
+                }
+                Console.WriteLine("");
             }
         }
     }

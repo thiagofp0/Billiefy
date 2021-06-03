@@ -12,11 +12,18 @@ namespace Billiefy.Views
         public void Create(int albumId)
         {
             Song song = new Song();
-            int aux;
+            int aux=0;
             
             song.Title = Entries.GetString("Qual o nome da música?");
-            song.Duration = Entries.GetDouble("Qual a duração da música?");
-            aux = Entries.GetInt("Essa música é favorita? \n1. Sim \n2. Não");
+            song.Duration = Entries.GetDouble("Qual a duração da música? (ex: 2,30)");
+            while (aux != 1 && aux != 2)
+            {
+                aux = Entries.GetInt("Essa música é favorita? \n1. Sim \n2. Não");
+                if (aux != 1 && aux != 2)
+                {
+                    Console.WriteLine("Valor digitado é inválido! Digite uma opção válida: ");
+                }
+            }
             song.IsFavorite = aux == 1; // Operador ternário
             song.AlbumId = albumId;
             _songController.Store(song);
@@ -58,12 +65,20 @@ namespace Billiefy.Views
         private void ShowResults(List<Song> songs)
         {
             Console.WriteLine("");
-            Console.WriteLine("Músicas encontradas: ");
-            foreach (var value in songs)
+            
+            if (songs.Count == 0)
             {
-                Show(value);
+                Console.WriteLine("Nenhuma música foi encontrada... "); 
             }
-            Console.WriteLine("");
+            else
+            {
+                Console.WriteLine("Músicas encontradas: ");
+                foreach (var value in songs)
+                {
+                    Show(value);
+                }
+                Console.WriteLine("");
+            }
         }
     }
 }
