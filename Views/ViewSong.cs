@@ -67,7 +67,7 @@ namespace Billiefy.Views
         }
         public void Show(Song song)
         {
-            Console.Write(song.Title + " --------------- " + song.Duration + " minutos  ");
+            Console.Write(song.Title + " --------------- " + Math.Round(song.Duration, 2) + " minutos  ");
             Console.WriteLine(song.IsFavorite ? "Favorita" : "Não-Favorita");
         }
 

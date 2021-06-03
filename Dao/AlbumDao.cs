@@ -6,7 +6,7 @@ namespace Billiefy.Dao
 {
     public class AlbumDao
     {
-        private List<Album> _albums = new List<Album>();
+        public static List<Album> _albums = new List<Album>();
 
         public List<Album> Albums
         {

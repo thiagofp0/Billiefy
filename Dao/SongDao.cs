@@ -73,6 +73,7 @@ namespace Billiefy.Dao
             try
             {
                 albums = _albumController.GetByArtist(artist);
+                Console.WriteLine(albums.Count);
                 foreach (var value in albums)
                 {
                     foreach (var key in _songs)
