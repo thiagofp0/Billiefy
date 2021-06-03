@@ -11,8 +11,17 @@ namespace Billiefy.Controllers
 
         public List<Song> Index()
         {
-            return SongDao._songs;
+            try
+            {
+                return SongDao._songs;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
+        
         public void Store(Song song)
         {
             try

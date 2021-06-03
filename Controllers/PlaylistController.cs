@@ -15,12 +15,10 @@ namespace Billiefy.Controllers
             int aux = 0;
             try
             {
-                int songsTotalCount = _songController.Index().Count;
                 songs = this.SeparateSongs();
-                
 
                 int minor = Math.Min(songs[0].Count, songs[1].Count);
-                while (aux < minor)
+                while (aux < minor && SumDurations(playlist)+songs[0][aux].Duration+songs[1][aux].Duration <= 60)
                 {
                     playlist.Add(songs[0][aux]);
                     playlist.Add(songs[1][aux]);
@@ -43,35 +41,70 @@ namespace Billiefy.Controllers
             List<Song> favorites = new List<Song>();
             List<Song> others = new List<Song>();
 
-            foreach (var song in songs)
+            try
             {
-                if (song.IsFavorite)
+                foreach (var song in songs)
                 {
-                    favorites.Add(song);
+                    if (song.IsFavorite)
+                    {
+                        favorites.Add(song);
+                    }
+                    else
+                    {
+                        others.Add(song);
+                    }
                 }
-                else
-                {
-                    others.Add(song);
-                }
+                lists.Add(this.ShuffleSongs(others));
+                lists.Add(this.ShuffleSongs(favorites));
+                return lists;
             }
-            lists.Add(this.ShuffleSongs(others));
-            lists.Add(this.ShuffleSongs(favorites));
-            return lists;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private List<Song> ShuffleSongs(List<Song> list)
         {
-            Random rng = new Random();
-            int n = list.Count;  
-            while (n > 1) {  
-                n--;  
-                int k = rng.Next(n + 1);  
-                Song value = list[k];  
-                list[k] = list[n];  
-                list[n] = value;  
-            }
+            try
+            {
+                Random rng = new Random();
+                int n = list.Count;  
+                while (n > 1) {  
+                    n--;  
+                    int k = rng.Next(n + 1);  
+                    Song value = list[k];  
+                    list[k] = list[n];  
+                    list[n] = value;  
+                }
 
-            return list;
+                return list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public double SumDurations(List<Song> songs)
+        {
+            double sum = 0;
+            try
+            {
+                foreach (var song in songs)
+                {
+                    sum += song.Duration;
+                }
+
+                return sum;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
