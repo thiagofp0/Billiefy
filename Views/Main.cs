@@ -1,4 +1,5 @@
 using System;
+using Billiefy.Util;
 
 namespace Billiefy.Views
 {
@@ -26,7 +27,7 @@ namespace Billiefy.Views
                 
                 );
 
-                option = int.Parse(Console.ReadLine()!);
+                option = Entries.GetInt("");
                 SwitchOption(option);
             }
         }

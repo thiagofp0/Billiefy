@@ -7,7 +7,7 @@ namespace Billiefy.Tests
 {
     public class Generate
     {
-        public void GenerateAlbum(ref AlbumController _albumController, ref SongController _songController )
+        public static void GenerateAlbum(ref AlbumController _albumController, ref SongController _songController )
         {
             Album album = new Album();
             

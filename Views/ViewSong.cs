@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Billiefy.Controllers;
 using Billiefy.Models;
+using Billiefy.Util;
 
 namespace Billiefy.Views
 {
@@ -13,18 +14,9 @@ namespace Billiefy.Views
             Song song = new Song();
             int aux;
             
-            Console.WriteLine("Qual o nome da música?");
-            song.Title = Console.ReadLine();
-                
-            Console.WriteLine("Qual a duração da música?");
-            song.Duration = float.Parse(Console.ReadLine()!);
-            
-            Console.WriteLine(
-                "Essa música é favorita? \n" +
-                "1. Sim \n" +
-                "2. Não"
-            );
-            aux = int.Parse(Console.ReadLine()!);
+            song.Title = Entries.GetString("Qual o nome da música?");
+            song.Duration = Entries.GetDouble("Qual a duração da música?");
+            aux = Entries.GetInt("Essa música é favorita? \n1. Sim \n2. Não");
             song.IsFavorite = aux == 1; // Operador ternário
             song.AlbumId = albumId;
             _songController.Store(song);
@@ -36,25 +28,17 @@ namespace Billiefy.Views
             List<Song> songs = new List<Song>();
             int option;
             
-            Console.WriteLine("Procurar música por: ");
-            Console.WriteLine(
-                    "1. Título \n" +
-                    "2. Banda \n" +
-                    "3. Voltar"
-                );
-            option = int.Parse(Console.ReadLine()!);
+            option = Entries.GetInt("Procurar música por: \n1. Título \n2. Banda \n3. Voltar");
 
             switch (option)
             {
                 case 1:
-                    Console.WriteLine("Qual o título da música?");
-                    song.Title = Console.ReadLine();
+                    song.Title = Entries.GetString("Qual o título da música?");
                     songs = _songController.GetByTitle(song.Title);
                     ShowResults(songs);
                     break;
                 case 2:
-                    Console.WriteLine("Qual é a banda?");
-                    string artist = Console.ReadLine();
+                    string artist = Entries.GetString("Qual é a banda?");
                     songs = _songController.GetByArtist(artist);
                     ShowResults(songs);
                     break;
@@ -74,7 +58,7 @@ namespace Billiefy.Views
         private void ShowResults(List<Song> songs)
         {
             Console.WriteLine("");
-            Console.WriteLine("Musicas encontradas: ");
+            Console.WriteLine("Músicas encontradas: ");
             foreach (var value in songs)
             {
                 Show(value);

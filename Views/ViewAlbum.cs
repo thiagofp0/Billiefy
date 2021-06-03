@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Billiefy.Controllers;
 using Billiefy.Models;
 using Billiefy.Tests;
+using Billiefy.Util;
 
 namespace Billiefy.Views
 {
@@ -16,8 +17,7 @@ namespace Billiefy.Views
         {
             try
             {
-                Generate generate = new Generate();
-                generate.GenerateAlbum(ref _albumController, ref _songController);
+                Generate.GenerateAlbum(ref _albumController, ref _songController);
             }
             catch (Exception e)
             {
@@ -30,16 +30,10 @@ namespace Billiefy.Views
         {
             Album album = new Album();
             int aux;
-            
-            Console.WriteLine("Qual é o título do álbum?");
-            album.Title = Console.ReadLine();
-            
-            Console.WriteLine("Qual o ano de lançamento deste álbum?");
-            album.ReleaseYear = int.Parse(Console.ReadLine()!);
 
-            Console.WriteLine("Qual o nome da banda?");
-            album.Artist = Console.ReadLine();
-            
+            album.Title = Entries.GetString("Qual é o título do álbum?");
+            album.ReleaseYear = Entries.GetYear("Qual o ano de lançamento deste álbum?");
+            album.Artist = Entries.GetString("Qual o nome da banda?");
             album = _albumController.Store(album);
             
             Console.WriteLine("\n");
@@ -48,12 +42,9 @@ namespace Billiefy.Views
             do
             {
                 _viewSong.Create(album.Id);
-                Console.WriteLine(
-                    "Pronto! Música adicionada! Adicionar outra? \n" +
-                    "1. Sim \n" +
-                    "2. Não \n"
-                );
-                aux = int.Parse(Console.ReadLine()!);
+                aux = Entries.GetInt("Pronto! Música adicionada! Adicionar outra? \n" +
+                                     "1. Sim \n" +
+                                     "2. Não \n");
             } while (aux != 2);
         }
         
@@ -62,32 +53,22 @@ namespace Billiefy.Views
             Album album = new Album();
             List<Album> albums = new List<Album>();
             int option;
-            
-            Console.WriteLine("Procurar álbum por:");
-            Console.WriteLine(
-                "1. Título \n" +
-                "2. Ano de lançamento \n" +
-                "3. Banda \n"
-            );
-            option = int.Parse(Console.ReadLine()!);
+            option = Entries.GetInt("Procurar álbum por: \n1. Título \n2. Ano de lançamento \n3. Banda \n");
             
             switch (option)
             {
                 case 1:
-                    Console.WriteLine("Qual é o título do álbum?");
-                    album.Title = Console.ReadLine();
-                    album = _albumController.GetByTitle(album.Title);
-                    Show(album);
+                    album.Title = Entries.GetString("Qual é o título do álbum?");
+                    albums = _albumController.GetByTitle(album.Title);
+                    ShowResults(albums);
                     break;
                 case 2:
-                    Console.WriteLine("Qual o ano de lançamento?");
-                    album.ReleaseYear = int.Parse(Console.ReadLine()!);
+                    album.ReleaseYear = Entries.GetYear("Qual o ano de lançamento?");
                     albums = _albumController.GetByReleaseYear(album.ReleaseYear);
                     ShowResults(albums);
                     break;
                 case 3:
-                    Console.WriteLine("Qual o nome da banda?");
-                    album.Artist = Console.ReadLine();
+                    album.Artist = Entries.GetString("Qual o nome da banda?");
                     albums = _albumController.GetByArtist(album.Artist);
                     ShowResults(albums);
                     break;
@@ -120,6 +101,8 @@ namespace Billiefy.Views
 
         private void ShowResults(List<Album> albums)
         {
+            Console.WriteLine("");
+            Console.WriteLine("Álbuns encontrados: ");
             foreach (var value in albums)
             {
                 Show(value);

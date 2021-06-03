@@ -23,7 +23,7 @@ namespace Billiefy.Controllers
         }
         
 
-        public Album GetByTitle(string title)
+        public List<Album> GetByTitle(string title)
         {
             try
             {
